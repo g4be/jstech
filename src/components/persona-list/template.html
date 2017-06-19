@@ -1,0 +1,17 @@
+<table>
+	<tr>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Email</th>
+		<th>Gender</th>
+		<th></th>
+	</tr>
+	<tr ng-repeat="record in records"  ng-click="view($index)">
+		<td>{{record.first_name}}</td>
+		<td>{{record.last_name}}</td>
+		<td>{{record.email}}</td>
+		<td>{{record.gender}}</td>
+		<td><button class="edit" ng-click="edit($event,$index)">Edit</button></td>
+	</tr>
+</table>
+<button ng-click="new()">New</button>

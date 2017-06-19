@@ -1,0 +1,32 @@
+<table ng-show="show()">
+	<tr>
+		<th>First name</th>
+		<td><input type="text" ng-model="persona.first_name"></td>
+	</tr>
+	<tr>
+		<th>Last name</th>
+		<td><input type="text" ng-model="persona.last_name"></td>
+	</tr>
+	<tr>
+		<th>Email</th>
+		<td><input type="email" ng-model="persona.email"></td>
+	</tr>
+	<tr>
+		<th>Gender</th>
+		<td>
+			<select ng-model="persona.gender">
+				<option value="male">Male</option>
+				<option value="female">Female</option>
+				<option value="other">Other</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<th>Template</th>
+		<td><textarea ng-model="persona.html"></textarea></td>
+	</tr>
+	<tr>
+		<th></th>
+		<td><button ng-click="done()">Done</button></td>
+	</tr>
+</table>
