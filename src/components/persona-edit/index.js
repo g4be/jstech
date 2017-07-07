@@ -3,28 +3,37 @@ import angular from 'angular';
 
 export class personaEdit {
 	
-	constructor($, $data) {
+	constructor($scope, personaService) {
+		this.$scope = $scope;
+		this.personaService = personaService;
 		
-		$.persona = null;
-		
-		$.$on('editPersona', function(event, index) {
-			$.persona = $data[index];
-		});
-		$.$on('showPersona', function() {
-			$.persona = null;
-		});
-		
-		$.show = function() { return $.persona !== null; }
-		$.done = function() { $.persona = null; }
-		
+		this.$scope.persona = null;
 	}
+	
+	$onInit() {
+		let $ = this;
+		$.$scope.$on('editPersona', function(event, index) {
+			$.$scope.persona = $.personaService.get(index);
+		});
+		$.$scope.$on('showPersona', function() {
+			$.$scope.persona = null;
+		});
+	}
+	
+	show() {
+		return this.$scope.persona !== null;
+	}
+	done() {
+		this.$scope.persona = null;
+	}
+	
 	
 	static get name() { return 'personaEdit'; }
 	
 	
 	static create() {
 		return {
-			controller: ['$scope', '$data', personaEdit],
+			controller: ['$scope', 'personaService', personaEdit],
 			template: require('./template.html')
 		};
 	}

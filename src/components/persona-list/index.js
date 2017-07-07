@@ -3,36 +3,34 @@ import angular from 'angular';
 
 export class personaList {
 	
-	constructor($, $data, $rootScope) {
+	constructor($scope, personaService, $rootScope) {
+		this.$scope = $scope;
+		this.personaService = personaService;
+		this.$rootScope = $rootScope;
 		
-		$.records = $data;
-		
-		$.view = function(index) {
-			$rootScope.$broadcast('showPersona', index);
-		};
-		$.edit = function($event, index) {
-			if ($event) $event.stopImmediatePropagation();
-			$rootScope.$broadcast('editPersona', index);
-		};
-		$.new = function() {
-			$data.push({
-				first_name: '',
-				last_name: '',
-				email: '',
-				gender: 'other',
-				html: ''
-			});
-			$.edit(null, $data.length-1);
-		};
-		
+		this.$scope.records = this.personaService.getList();
 	}
+	
+	$onInit() {}
+	
+	view(index) {
+		this.$rootScope.$broadcast('showPersona', index);
+	}
+	new() {
+		this.edit(null, this.personaService.add());
+	}
+	edit($event, index) {
+		if ($event) $event.stopImmediatePropagation();
+		this.$rootScope.$broadcast('editPersona', index);
+	}
+	
 	
 	static get name() { return 'personaList'; }
 	
 	
 	static create() {
 		return {
-			controller: ['$scope', '$data', '$rootScope', personaList],
+			controller: ['$scope', 'personaService', '$rootScope', personaList],
 			template: require('./template.html')
 		};
 	}

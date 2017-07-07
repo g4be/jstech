@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import { personaService } from './components/persona-service';
 import { personaList } from './components/persona-list';
 import { personaEdit } from './components/persona-edit';
 import { personaView } from './components/persona-view';
@@ -31,6 +32,7 @@ persona.factory('$data', function() {
 });
 
 
+persona.service(personaService.name, personaService.create());
 persona.component(personaList.name, personaList.create());
 persona.component(personaEdit.name, personaEdit.create());
 persona.component(personaView.name, personaView.create());

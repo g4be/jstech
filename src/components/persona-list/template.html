@@ -6,12 +6,12 @@
 		<th>Gender</th>
 		<th></th>
 	</tr>
-	<tr ng-repeat="record in records"  ng-click="view($index)">
+	<tr ng-repeat="record in records"  ng-click="$ctrl.view($index)">
 		<td>{{record.first_name}}</td>
 		<td>{{record.last_name}}</td>
 		<td>{{record.email}}</td>
 		<td>{{record.gender}}</td>
-		<td><button class="edit" ng-click="edit($event,$index)">Edit</button></td>
+		<td><button class="edit" ng-click="$ctrl.edit($event,$index)">Edit</button></td>
 	</tr>
 </table>
-<button ng-click="new()">New</button>
+<button ng-click="$ctrl.new()">New</button>
